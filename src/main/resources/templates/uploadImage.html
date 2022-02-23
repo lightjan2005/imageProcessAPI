@@ -1,0 +1,62 @@
+<html xmlns:th="https://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Spring Boot Web Upload and Resize Images</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1>Choose an image file to upload and resize.</h1>
+    <p class="text-danger" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+    <p class="text-success" th:if="${successMessage}" th:text="${successMessage}"></p>
+
+    <form method="POST" enctype="multipart/form-data" action="/uploadImage">
+        <div class="form-group">
+            <label for="image">File to upload</label>
+            <input type="file" class="form-control-file" id="image" name="image" >
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+
+    <form method = "POST" th:action = @{/addActions} >
+        <table>
+            <tr>
+                <td><label path = "flip">Flip</label></td>
+                <td><input type = "text" name = "flip" path = "flip" /></td>
+            </tr>
+            <tr>
+                <td><label path = "rotateDegrees">Rotate Degrees</label></td>
+                <td><input type = "text" name = "rotateDegrees" path = "rotateDegrees" /></td>
+            </tr>
+            <tr>
+                <td><label path = "greyscale">greyscale</label></td>
+                <td><input type = "text" name = "greyscale" path = "greyscale" /></td>
+            </tr>
+            <tr>
+                <td><label path = "resizeWidth">Resize Width</label></td>
+                <td><input type = "text" name = "resizeWidth" path = "resizeWidth" /></td>
+            </tr>
+            <tr>
+                <td><label path = "resizeHeight">Resize Height</label></td>
+                <td><input type = "text" name = "resizeHeight" path = "resizeHeight" /></td>
+            </tr>
+            <tr>
+                <td><label path = "generateThumbnail">Generate Thumbnail</label></td>
+                <td><input type = "text" name = "generateThumbnail" path = "generateThumbnail" /></td>
+            </tr>
+            <tr>
+                <td><label path = "rotate90">Rotate Left or Right</label></td>
+                <td><input type = "text" name = "rotate90" path = "rotate90" /></td>
+            </tr>
+            <tr>
+                <td colspan = "2">
+                    <input type = "submit" value = "Submit"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+</div>
+</body>
+</html>
