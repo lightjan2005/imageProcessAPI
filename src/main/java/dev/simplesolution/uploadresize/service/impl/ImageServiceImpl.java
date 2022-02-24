@@ -80,8 +80,8 @@ public class ImageServiceImpl implements ImageService {
 
             BufferedImage inputImage = ImageIO.read(fileToModify);
 
-            int width = 1280;
-            int height = 720;
+            int width = 161;
+            int height = 161;
 
             BufferedImage outputImage = new BufferedImage(width,
                     height, inputImage.getType());
@@ -199,7 +199,6 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public boolean modifyImage(double resizePercent, int horVer, int greyscale, int degrees, int rotate90, int generateThumbnail) {
-
 
         if(resizePercent != 0){
             resizeImage(resizePercent);
