@@ -19,7 +19,7 @@ public class ActionsController {
         return actionsService.getAllActions();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value ="/actions")
+    @RequestMapping(method = RequestMethod.POST, value ="/addActions")
     public void addAction(@RequestBody Actions action){
         actionsService.setActions(action.getFlip(),action.getRotateDegrees(),action.getResizePercent(),action.getGenerateThumbnail(),action.getRotate90(), action.getGreyscale());
     }

@@ -50,8 +50,6 @@ public class ImageServiceImpl implements ImageService {
 
             BufferedImage inputImage = ImageIO.read(fileToModify);
 
-
-
             int width = (int) (inputImage.getWidth() * percent);
             int height = (int) (inputImage.getHeight() * percent);
 
@@ -64,6 +62,34 @@ public class ImageServiceImpl implements ImageService {
             g2d.drawImage(inputImage, 0, 0, width, height, null);
             g2d.dispose();
 
+
+            // writes to output file
+            ImageIO.write(outputImage, "jpg", fileToModify);
+            outputImage.flush();
+
+            return true;
+        } catch (IOException e) {
+            logger.error(e.getMessage(), e);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean generateThumbnail() {
+        try {
+
+            BufferedImage inputImage = ImageIO.read(fileToModify);
+
+            int width = 1280;
+            int height = 720;
+
+            BufferedImage outputImage = new BufferedImage(width,
+                    height, inputImage.getType());
+
+            // scales the input image to the output image
+            Graphics2D g2d = outputImage.createGraphics();
+            g2d.drawImage(inputImage, 0, 0, width, height, null);
+            g2d.dispose();
 
             // writes to output file
             ImageIO.write(outputImage, "jpg", fileToModify);
@@ -169,11 +195,7 @@ public class ImageServiceImpl implements ImageService {
             logger.error(e.getMessage(), e);
             return false;
         }
-
-
     }
-
-
 
     @Override
     public boolean modifyImage(double resizePercent, int horVer, int greyscale, int degrees, int rotate90, int generateThumbnail) {
@@ -201,9 +223,8 @@ public class ImageServiceImpl implements ImageService {
             rotateDegrees(-90);
         }
         if(generateThumbnail == 1){
-            resizeImage(0.2);
+            generateThumbnail();
         }
-
 
         String newFileName = FilenameUtils.getBaseName(fileToModify.getName())
                 + "_" + "GreyScaled" + "."

@@ -12,6 +12,7 @@ public interface ImageService {
     boolean flip(int flip);
     boolean convertGreyscale();
     boolean rotateDegrees(int degrees);
+    boolean generateThumbnail();
 
     boolean modifyImage(double resize,int flip, int greyscale, int rotate, int rotate90, int generateThumbnail);
 
