@@ -17,38 +17,8 @@
         <button type="submit" class="btn btn-primary">Upload</button>
     </form>
 
-    <form method = "POST" th:action = @{/addActions} >
-        <table>
-            <tr>
-                <td><label path = "flip">Flip</label></td>
-                <td><input type = "text" name = "flip" path = "flip" /></td>
-            </tr>
-            <tr>
-                <td><label path = "rotateDegrees">Rotate Degrees</label></td>
-                <td><input type = "text" name = "rotateDegrees" path = "rotateDegrees" /></td>
-            </tr>
-            <tr>
-                <td><label path = "greyscale">Greyscale</label></td>
-                <td><input type = "text" name = "greyscale" path = "greyscale" /></td>
-            </tr>
-            <tr>
-                <td><label path = "resizePercentage">Resize Percentage</label></td>
-                <td><input type = "text" name = "resizePercentage" path = "resizePercentage" /></td>
-            </tr>
-            <tr>
-                <td><label path = "generateThumbnail">Generate Thumbnail</label></td>
-                <td><input type = "text" name = "generateThumbnail" path = "generateThumbnail" /></td>
-            </tr>
-            <tr>
-                <td><label path = "rotate90">Rotate Left or Right</label></td>
-                <td><input type = "text" name = "rotate90" path = "rotate90" /></td>
-            </tr>
-            <tr>
-                <td colspan = "2">
-                    <input type = "submit" value = "Submit"/>
-                </td>
-            </tr>
-        </table>
+    <form method="POST" enctype="multipart/form-data" action="/modifyAndSave">
+        <button type="submit" class="btn btn-primary">Modify and Save Image</button>
     </form>
 
 
