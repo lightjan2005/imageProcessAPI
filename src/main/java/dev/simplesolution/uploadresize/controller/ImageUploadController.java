@@ -6,9 +6,7 @@ import actionsPackage.Actions;
 import dev.simplesolution.uploadresize.service.impl.ActionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,6 +35,11 @@ public class ImageUploadController {
         return "uploadImage";
     }
 
+    @GetMapping("/saveImage")
+    public String saveImage() {
+        return "uploadImage";
+    }
+
 
     @PostMapping("/uploadImage")
     public String uploadImage(@RequestParam("image") MultipartFile imageFile, RedirectAttributes redirectAttributes) {
@@ -47,10 +50,10 @@ public class ImageUploadController {
 
         // upload image file
         File file = fileUploadService.upload(imageFile);
+        imageService.setFile(file);
         if(file == null) {
             redirectAttributes.addFlashAttribute("errorMessage", "Upload failed.");
             return "redirect:/";
-
         }
 
         // set file
@@ -69,16 +72,24 @@ public class ImageUploadController {
         return "redirect:/";
     }
 
-    @PostMapping("/modifyAndSave")
-    public String modifyAndSave(RedirectAttributes redirectAttributes) {
+    @RequestMapping(path = "/modifyAndSave",method = RequestMethod.POST)
+    public String modifyAndSave(@RequestParam("flip") int flip,
+                                @RequestParam("rotateDegrees") int rotateDegrees,
+                                @RequestParam("greyscale") int greyscale,
+                                @RequestParam("resizePercent") double resizePercent,
+                                @RequestParam("generateThumbnail") int generateThumbnail,
+                                @RequestParam("rotate90") int rotate90, RedirectAttributes redirectAttributes)
+    {
+        actionsService.setActions(flip,rotateDegrees,resizePercent,generateThumbnail,rotate90,greyscale);
+
+        redirectAttributes.addFlashAttribute("successMessage", "Actions saved successfully.");
+        return "redirect:/";
+    }
+
+    @PostMapping("/saveImage")
+    public String save(RedirectAttributes redirectAttributes) {
 
 
-        // get uploaded image file
-        File file = fileUploadService.getFile();
-
-
-        // set file
-        imageService.setFile(file);
         Actions actions = actionsService.getAllActions();
 
         // apply actions
