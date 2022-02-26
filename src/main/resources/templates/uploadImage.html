@@ -17,8 +17,38 @@
         <button type="submit" class="btn btn-primary">Upload</button>
     </form>
 
+
     <form method="POST" enctype="multipart/form-data" action="/modifyAndSave">
-        <button type="submit" class="btn btn-primary">Modify and Save Image</button>
+
+        <div class="form-group">
+            <label for="flip">Flip</label>
+            <input type="text" class="form-control-file" id="flip" name="flip" placeholder="1 for horizontal and 2 for vertical" >
+        </div>
+        <div class="form-group">
+            <label for="flip">Rotate Degrees</label>
+            <input type="text" class="form-control-file" id="rotateDegrees" name="rotateDegrees" placeholder="1 for horizontal and 2 for vertical" >
+        </div>
+        <div class="form-group">
+            <label for="flip">Greyscale</label>
+            <input type="text" class="form-control-file" id="greyscale" name="greyscale" placeholder="1 for horizontal and 2 for vertical" >
+        </div>
+        <div class="form-group">
+            <label for="flip">Resize Percent</label>
+            <input type="text" class="form-control-file" id="resizePercent" name="resizePercent" placeholder="1 for horizontal and 2 for vertical" >
+        </div>
+        <div class="form-group">
+            <label for="flip">Generate Thumbnail</label>
+            <input type="text" class="form-control-file" id="generateThumbnail" name="generateThumbnail" placeholder="1 for horizontal and 2 for vertical" >
+        </div>
+        <div class="form-group">
+            <label for="flip">Rotate 90</label>
+            <input type="text" class="form-control-file" id="rotate90" name="rotate90" placeholder="1 for horizontal and 2 for vertical" >
+        </div>
+        <button type="submit" class="btn btn-primary">Send Actions</button>
+    </form>
+
+    <form method="POST" enctype="multipart/form-data" action="/saveImage">
+        <button type="submit" class="btn btn-primary">Save Image</button>
     </form>
 
 
