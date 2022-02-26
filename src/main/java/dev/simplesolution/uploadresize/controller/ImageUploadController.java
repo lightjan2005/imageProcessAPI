@@ -55,7 +55,7 @@ public class ImageUploadController {
         // apply actions
         boolean modifyImage = imageService.modifyImage(actions.getResizePercent(),actions.getFlip(),actions.getGreyscale(),actions.getRotateDegrees(), actions.getRotate90(), actions.getGenerateThumbnail());
         if(!modifyImage) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Convert Greyscale failed.");
+            redirectAttributes.addFlashAttribute("errorMessage", "Modify Image failed.");
             return "redirect:/";
         }
 

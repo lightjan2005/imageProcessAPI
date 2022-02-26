@@ -133,8 +133,6 @@ public class ImageServiceImpl implements ImageService {
         }
     }
 
-
-
     @Override
     public boolean convertGreyscale() {
         try {
