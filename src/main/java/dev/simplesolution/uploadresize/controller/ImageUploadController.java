@@ -56,18 +56,6 @@ public class ImageUploadController {
             return "redirect:/";
         }
 
-        // set file
-//        imageService.setFile(file);
-//        Actions actions = actionsService.getAllActions();
-//
-//        // apply actions
-//        boolean modifyImage = imageService.modifyImage(actions.getResizePercent(),actions.getFlip(),actions.getGreyscale(),actions.getRotateDegrees(), actions.getRotate90(), actions.getGenerateThumbnail());
-//        if(!modifyImage) {
-//            redirectAttributes.addFlashAttribute("errorMessage", "Modify Image failed.");
-//            return "redirect:/";
-//        }
-
-
         redirectAttributes.addFlashAttribute("successMessage", "File upload successfully.");
         return "redirect:/";
     }
