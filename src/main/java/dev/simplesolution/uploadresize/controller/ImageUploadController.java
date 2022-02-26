@@ -32,6 +32,11 @@ public class ImageUploadController {
         return "uploadImage";
     }
 
+    @GetMapping("/modifyAndSave")
+    public String modifyAndSaveImage() {
+        return "uploadImage";
+    }
+
 
     @PostMapping("/uploadImage")
     public String uploadImage(@RequestParam("image") MultipartFile imageFile, RedirectAttributes redirectAttributes) {
@@ -49,6 +54,30 @@ public class ImageUploadController {
         }
 
         // set file
+//        imageService.setFile(file);
+//        Actions actions = actionsService.getAllActions();
+//
+//        // apply actions
+//        boolean modifyImage = imageService.modifyImage(actions.getResizePercent(),actions.getFlip(),actions.getGreyscale(),actions.getRotateDegrees(), actions.getRotate90(), actions.getGenerateThumbnail());
+//        if(!modifyImage) {
+//            redirectAttributes.addFlashAttribute("errorMessage", "Modify Image failed.");
+//            return "redirect:/";
+//        }
+
+
+        redirectAttributes.addFlashAttribute("successMessage", "File upload successfully.");
+        return "redirect:/";
+    }
+
+    @PostMapping("/modifyAndSave")
+    public String modifyAndSave(RedirectAttributes redirectAttributes) {
+
+
+        // get uploaded image file
+        File file = fileUploadService.getFile();
+
+
+        // set file
         imageService.setFile(file);
         Actions actions = actionsService.getAllActions();
 
@@ -60,7 +89,7 @@ public class ImageUploadController {
         }
 
 
-        redirectAttributes.addFlashAttribute("successMessage", "File upload successfully.");
+        redirectAttributes.addFlashAttribute("successMessage", "File saved successfully.");
         return "redirect:/";
     }
 
